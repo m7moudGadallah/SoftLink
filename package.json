@@ -1,0 +1,14 @@
+{
+  "name": "soft-link",
+  "version": "1.0.0",
+  "description": "Simplify URL management with a user-friendly backend for effortless shortening and sharing.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "m7moudGadallah",
+  "license": "ISC"
+}

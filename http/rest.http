@@ -1,0 +1,17 @@
+@URL=http://localhost:3000
+
+## Check if the server is running
+GET {{URL}}/api/livez
+
+## Shorten a URL
+POST {{URL}}/api/url/shorten
+
+Content-Type: application/json
+
+```json
+{
+    "url": "https://www.google.com"
+}
+
+## Redirect to Original URL
+GET {{URL}}/api/url/:shortId
