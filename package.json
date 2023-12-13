@@ -2,7 +2,7 @@
   "name": "soft-link",
   "version": "1.0.0",
   "description": "Simplify URL management with a user-friendly backend for effortless shortening and sharing.",
-  "main": "index.js",
+  "main": "./src/index.js",
   "directories": {
     "doc": "docs"
   },
