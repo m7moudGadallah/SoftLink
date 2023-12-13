@@ -13,6 +13,7 @@ Soft-Link is a simple and efficient URL shortener designed to streamline the pro
 
 - **Runtime:** Node.js
 - **Language:** JavaScript/TypeScript
+- **Framework:** Express.js
 - **Database:** MongoDB with Mongoose
 - **Testing:** Jest
 - **Documentation and Manual Testing:** Postman
@@ -62,6 +63,13 @@ POST {{URL}}/api/url/shorten
 ```http
 GET {{URL}}/api/url/:shortId
 ```
+
+## Design
+
+Refer to the `docs` directory for design details:
+
+- [architecture-diagram](./docs/architecture-digram/arch-digram.png) for the project's architecture diagram.
+- [erd](./docs/erd/erd.png) for the simple Entity-Relationship Diagram.
 
 ## License
 
