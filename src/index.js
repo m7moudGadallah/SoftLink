@@ -9,6 +9,9 @@ const app = express();
 
 // TODO: mount postMiddlewares
 
+/**
+ * @type {import('http').Server}
+ */
 const server = app.listen(async () => {
   const { NODE_ENV: MODE, PORT } = process.env;
   await DB.connect();
