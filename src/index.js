@@ -1,19 +1,21 @@
 const express = require('express');
 const { DB } = require('./config');
+const { loadRoutes } = require('./routes');
 
 const app = express();
 
 // TODO: mount preMiddlewares
 
-// TODO: mount routes
+loadRoutes(app);
 
 // TODO: mount postMiddlewares
 
 /**
  * @type {import('http').Server}
  */
-const server = app.listen(async () => {
-  const { NODE_ENV: MODE, PORT } = process.env;
+const { NODE_ENV: MODE, PORT } = process.env;
+
+const server = app.listen(PORT, async () => {
   await DB.connect();
 
   console.log(`Connected to (${DB.getName()}) database! 🚀`);
