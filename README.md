@@ -1,4 +1,4 @@
-# Soft Link
+# SoftLink
 
 ## Overview
 
@@ -6,8 +6,8 @@ Soft-Link is a simple and efficient URL shortener designed to streamline the pro
 
 ## Key Features
 
-- URL Shortening: Quickly generate concise and shareable links.
-- Redirection: Smoothly redirect users to the original URL when clicking on the shortened link.
+- **URL Shortening:** Quickly generate concise and shareable links.
+- **Redirection:** Smoothly redirect users to the original URL when clicking on the shortened link.
 
 ## Tech Stack
 
@@ -48,7 +48,7 @@ npm test
 
 ## API Documentation
 
-Explore and test the API using Postman. Refer to the provided Postman collection for details.
+Explore and test the API using **_[Postman](https://documenter.getpostman.com/view/27682136/2s9Ykkf2yb)_**. Refer to the provided Postman collection for details.
 
 ### Endpoints
 
