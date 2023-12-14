@@ -1,14 +1,15 @@
 const express = require('express');
 const { DB } = require('./config');
 const { loadRoutes } = require('./routes');
+const { loadPreMiddlewares, loadPostMiddlewares } = require('./middlewares');
 
 const app = express();
 
-// TODO: mount preMiddlewares
+loadPreMiddlewares(app);
 
 loadRoutes(app);
 
-// TODO: mount postMiddlewares
+loadPostMiddlewares(app);
 
 /**
  * @type {import('http').Server}
