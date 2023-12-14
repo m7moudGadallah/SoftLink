@@ -1,17 +1,19 @@
 @URL=http://localhost:3000
 
-## Check if the server is running
-GET {{URL}}/api/livez
+### Check if the server is running
+GET {{URL}}
 
-## Shorten a URL
-POST {{URL}}/api/url/shorten
+### Check if the API is live
+GET {{URL}}/livez
 
+### Shorten a url
+POST {{URL}}/shorten
 Content-Type: application/json
 
-```json
 {
-    "url": "https://www.google.com"
+    "url": "https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/#mongodb-method-db.collection.insertOne"
 }
 
-## Redirect to Original URL
-GET {{URL}}/api/url/:shortId
+
+### Redirect to Original url
+GET {{URL}}/6579fbbd652bb864b4623463
