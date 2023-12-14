@@ -11,17 +11,48 @@ loadRoutes(app);
 
 loadPostMiddlewares(app);
 
-/**
- * @type {import('http').Server}
- */
 const { NODE_ENV: MODE, PORT } = process.env;
 
-const server = app.listen(PORT, async () => {
-  await DB.connect();
+/**
+ * @type {import('http').Server | null}
+ */
+let server = null;
 
-  console.log(`Connected to (${DB.getName()}) database! 🚀`);
+/**
+ * Start http server
+ * @returns {import('http').Server}
+ */
+function createServer() {
+  if (!server) {
+    server = app.listen(PORT, async () => {
+      await DB.connect();
 
-  console.log(`App is running in ${MODE} mode on port ${PORT}! 🚀`);
-});
+      console.log(`Connected to (${DB.getName()}) database! 🚀`);
 
-module.exports = { server };
+      console.log(`App is running in ${MODE} mode on port ${PORT}! 🚀`);
+    });
+  }
+
+  return server;
+}
+
+/**
+ * Close http server
+ * @async
+ * @param {import('http').Server} server
+ * @returns {Promise<void>}
+ */
+async function closeServer() {
+  if (server) {
+    await DB.disConnect();
+
+    server.close();
+    server = null;
+  }
+}
+
+if (MODE !== 'test') {
+  createServer();
+}
+
+module.exports = { createServer, closeServer };
