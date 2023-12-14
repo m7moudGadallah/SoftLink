@@ -7,8 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "export NODE_ENV=testing || SET \"NODE_ENV=testing\" && jest -i --silent",
-    "test:coverage": "export NODE_ENV=testing || SET \"NODE_ENV=testing\" && jest -i --coverage --silent",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && jest -i --silent",
+    "test:coverage": "export NODE_ENV=test || SET \"NODE_ENV=test\" && jest -i --coverage --silent",
     "start": "nodemon main"
   },
   "author": "m7moudGadallah",
