@@ -1,5 +1,6 @@
 const { UrlService } = require('../../../src/services');
 const { UrlModel } = require('../../../src/models');
+const { AppError } = require('../../../src/utils');
 
 // Mock mongoose.model function
 jest.mock('mongoose', () => {
@@ -53,6 +54,28 @@ describe('UrlService class unit test', () => {
       );
       expect(returnedId).toBeDefined();
       expect(returnedId).toBe(mockId);
+    });
+  });
+
+  describe('getOriginalUrl', () => {
+    const mockId = '31235fds35123';
+    const originalUrl = 'https://google.com';
+
+    it('should return originalUrl', async () => {
+      UrlModel.findByIdAndUpdate.mockResolvedValue({ originalUrl });
+
+      const url = await UrlService.getOriginalUrl({ mockId });
+
+      expect(url).toBeDefined();
+      expect(url).toBe(originalUrl);
+    });
+
+    it('should throw an error if url is not found', async () => {
+      UrlModel.findByIdAndUpdate.mockResolvedValue(null);
+
+      await expect(UrlService.getOriginalUrl(mockId)).rejects.toThrow(
+        expect.any(AppError)
+      );
     });
   });
 });
