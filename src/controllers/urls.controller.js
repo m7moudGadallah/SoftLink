@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const { UrlService } = require('../services');
 const { catchAsync, AppError } = require('../utils');
 
@@ -15,7 +16,7 @@ class UrlController {
      */
     async (req, res, next) => {
       // validate url is provided
-      if (!req?.body?.url) throw new AppError('url is required', 400);
+      if (!req?.body?.url) throw new AppError('url is required!', 400);
 
       // validate is valid url using regex
       if (req.body.url.match(/^(ftp|http|https):\/\/[^ "]+$/) === null)
@@ -29,14 +30,14 @@ class UrlController {
       const appUrl = NODE_ENV === 'production' ? PROD_URL : DEV_URL;
 
       // construct shortened url
-      const url = `${appUrl}/${urlId}`;
+      const shortUrl = `${appUrl}/${urlId}`;
 
       // send response
       res.status(200).json({
         success: true,
-        message: 'Url shortened successfully',
+        message: 'Url shortened successfully!',
         data: {
-          url,
+          shortUrl,
         },
       });
     }
@@ -54,11 +55,18 @@ class UrlController {
      * @param {import('express').NextFunction} next
      */
     async (req, res, next) => {
+      // validate url id
+      if (!mongoose.Types.ObjectId.isValid(req.params.urlId))
+        throw new AppError('Invalid url!', 404);
+
       // get original url
       const originalUrl = await UrlService.getOriginalUrl(req.params.urlId);
 
+      // validate original url
+      if (!originalUrl) throw new AppError('Invalid url!', 404);
+
       // redirect to original url
-      res.redirect(originalUrl);
+      res.status(301).redirect(originalUrl);
     }
   );
 }
